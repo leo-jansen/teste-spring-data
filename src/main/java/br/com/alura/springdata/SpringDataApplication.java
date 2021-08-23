@@ -5,14 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.alura.springdata.entities.Cargo;
-import br.com.alura.springdata.repositories.CargoRepository;
+import br.com.alura.springdata.services.CargoService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
-	private final CargoRepository cargoRepository;
+	private final CargoService cargoService;
 
-	SpringDataApplication(CargoRepository cargoRepository) {
-		this.cargoRepository = cargoRepository;
+	SpringDataApplication(CargoService cargoService) {
+		this.cargoService = cargoService;
 	}
 
 	public static void main(String[] args) {
@@ -21,7 +21,8 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cargo cargo = new Cargo("Desenvolvedor de Software");
-		cargoRepository.save(cargo);
+		Cargo cargo = new Cargo("RH");
+		cargoService.salvar(cargo);
+		cargoService.atualizar(3, "Analista de dados");
 	}
 }

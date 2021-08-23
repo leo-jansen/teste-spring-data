@@ -13,8 +13,16 @@ public class Cargo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String descricao;
+  
+  public Cargo() {
+  }
 
   public Cargo(String descricao) {
+    this.descricao = descricao;
+  }
+  
+  public Cargo(Integer id, String descricao) {
+    this.id = id;
     this.descricao = descricao;
   }
 
