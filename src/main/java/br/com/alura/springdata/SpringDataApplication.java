@@ -24,5 +24,7 @@ public class SpringDataApplication implements CommandLineRunner {
 		Cargo cargo = new Cargo("RH");
 		cargoService.salvar(cargo);
 		cargoService.atualizar(3, "Analista de dados");
+		cargoService.buscar().forEach(System.out::println); // printa todos os cargos do BD
+		cargoService.deletarPorId(5);
 	}
 }

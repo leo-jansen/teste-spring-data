@@ -22,4 +22,13 @@ public class CargoService {
     Cargo cargo = new Cargo(id, descricao);
     cargoRepository.save(cargo);
   }
+
+  public Iterable<Cargo> buscar() {
+    Iterable<Cargo> cargos = cargoRepository.findAll();
+    return cargos;
+  }
+
+  public void deletarPorId(Integer id) {
+    cargoRepository.deleteById(id);
+  }
 }
