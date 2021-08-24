@@ -3,44 +3,39 @@ package br.com.alura.springdata.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cargos")
-public class Cargo {
+@Table(name = "unidades")
+public class Unidade {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String descricao;
-  @OneToMany(mappedBy = "cargo")
+  private String endereco;
+  @ManyToMany(mappedBy = "unidades", fetch = FetchType.EAGER)
   private List<Funcionario> funcionarios;
-  
-  public Cargo() {
+
+  public Unidade() {}
+
+  public Unidade(String descricao, String endereco) {
+    this.descricao = descricao;
+    this.endereco = endereco;
   }
 
-  public Cargo(String descricao) {
-    this.descricao = descricao;
-  }
-  
-  public Cargo(Integer id, String descricao) {
+  public Unidade(Integer id, String descricao, String endereco) {
     this.id = id;
     this.descricao = descricao;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public String getDescricao() {
-    return descricao;
+    this.endereco = endereco;
   }
 
   @Override
   public String toString() {
-    return String.format("Descrição do cargo: %s", this.descricao);
+    return String.format("Endereço: %s | Unidade: %s", this.descricao, this.endereco);
   }
 }
