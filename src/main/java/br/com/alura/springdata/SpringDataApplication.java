@@ -1,7 +1,7 @@
 package br.com.alura.springdata;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.time.LocalDate;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,13 +28,18 @@ public class SpringDataApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    Cargo cargo = new Cargo("RH");
+    Cargo cargo = new Cargo("Desenvolvedor");
     cargoService.salvar(cargo);
-    /*cargoService.atualizar(3, "Analista de dados");
-    cargoService.buscar().forEach(System.out::println); // printa todos os cargos do BD
-    cargoService.deletarPorId(1); */
-    Funcionario funcionario = new Funcionario("Paulo Silveira", "111.111.111-11", new BigDecimal("25000"), cargo);
+    /*
+     * cargoService.atualizar(3, "Analista de dados");
+     * cargoService.buscar().forEach(System.out::println); // printa todos os cargos
+     * do BD cargoService.deletarPorId(1);
+     */
+    Funcionario funcionario = new Funcionario("Gulherme Silveira", "222.222.222-22", new BigDecimal("20000"), cargo);
     funcionarioService.salvar(funcionario);
     funcionarioService.buscarPorNome("Paulo Silveira").forEach(System.out::println);
+    funcionarioService
+        .buscarNomeSalarioMaiorDataContratacao("Gulherme Silveira", new BigDecimal("20000"), LocalDate.now())
+        .forEach(System.out::println);
   }
 }

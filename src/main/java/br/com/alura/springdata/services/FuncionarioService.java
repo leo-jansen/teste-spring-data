@@ -1,6 +1,7 @@
 package br.com.alura.springdata.services;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +37,13 @@ public class FuncionarioService {
     funcionarioRepository.deleteById(id);
   }
 
-  public List<Funcionario> buscarPorNome(String nome){
-    List<Funcionario> funcionarios = funcionarioRepository.findByNome(nome);  
+  public List<Funcionario> buscarPorNome(String nome) {
+    List<Funcionario> funcionarios = funcionarioRepository.findByNome(nome);
+    return funcionarios;
+  }
+
+  public List<Funcionario> buscarNomeSalarioMaiorDataContratacao(String nome, BigDecimal salario, LocalDate data) {
+    List<Funcionario> funcionarios = funcionarioRepository.buscarNomeSalarioMaiorDataContratacao(nome, salario, data);
     return funcionarios;
   }
 
