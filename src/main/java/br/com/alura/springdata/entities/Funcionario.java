@@ -38,6 +38,15 @@ public class Funcionario {
     this.salario = salario;
     this.dataContratacao = LocalDate.now();
   }
+
+  public Funcionario(String nome, String cpf, BigDecimal salario, Cargo cargo) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.salario = salario;
+    this.dataContratacao = LocalDate.now();
+    this.cargo = cargo;
+  }
+
   public Funcionario(Integer id, String nome, String cpf, BigDecimal salario) {
     this.id = id;
     this.nome = nome;

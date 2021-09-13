@@ -1,6 +1,8 @@
 package br.com.alura.springdata.services;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -33,4 +35,10 @@ public class FuncionarioService {
   public void deletarPorId(Integer id) {
     funcionarioRepository.deleteById(id);
   }
+
+  public List<Funcionario> buscarPorNome(String nome){
+    List<Funcionario> funcionarios = funcionarioRepository.findByNome(nome);  
+    return funcionarios;
+  }
+
 }
