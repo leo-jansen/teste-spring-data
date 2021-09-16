@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.alura.springdata.dto.FuncionarioTO;
 import br.com.alura.springdata.entities.Funcionario;
 import br.com.alura.springdata.repositories.FuncionarioRepository;
 
@@ -44,6 +45,11 @@ public class FuncionarioService {
   public List<Funcionario> buscarNomeSalarioMaiorDataContratacao(String nome, BigDecimal salario, LocalDate data) {
     List<Funcionario> funcionarios = funcionarioRepository.buscarNomeSalarioMaiorDataContratacao(nome, salario, data);
     return funcionarios;
+  }
+
+  public List<FuncionarioTO> buscarFuncionariosSalarios() {
+    List<FuncionarioTO> funcionariosTO = funcionarioRepository.buscarFuncionarioSalario(); 
+    return funcionariosTO;
   }
 
 }

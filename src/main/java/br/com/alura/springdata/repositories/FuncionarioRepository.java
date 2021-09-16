@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import br.com.alura.springdata.dto.FuncionarioTO;
 import br.com.alura.springdata.entities.Funcionario;
 
 public interface FuncionarioRepository extends CrudRepository<Funcionario, Integer>{
@@ -25,4 +26,8 @@ public interface FuncionarioRepository extends CrudRepository<Funcionario, Integ
   /** Native Query */
   @Query(value = "SELECT * FROM funcionarios f WHERE f.data_contratacao >= :data", nativeQuery = true)
   List<Funcionario> buscarDataContratacaoMaior(LocalDate data);
+
+  // usando objetoTO para projeção
+  @Query("SELECT new br.com.alura.springdata.dto.FuncionarioTO(f.id, f.nome, f.salario) FROM Funcionario f")
+  List<FuncionarioTO> buscarFuncionarioSalario();
 }
