@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.springdata.dto.FuncionarioTO;
 import br.com.alura.springdata.entities.Funcionario;
 import br.com.alura.springdata.repositories.FuncionarioRepository;
+import br.com.alura.springdata.specifications.FuncionarioSpecification;
 
 @Service
 public class FuncionarioService {
@@ -52,4 +54,11 @@ public class FuncionarioService {
     return funcionariosTO;
   }
 
+  public List<Funcionario> consultaDinamica(String nome, String cpf, BigDecimal salario) {
+    List<Funcionario> lista = funcionarioRepository.findAll(Specification
+      .where(FuncionarioSpecification.nome(nome))
+      .or(FuncionarioSpecification.salario(salario))
+      .or(FuncionarioSpecification.cpf(cpf)));
+    return lista;
+  }
 }

@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import br.com.alura.springdata.dto.FuncionarioTO;
 import br.com.alura.springdata.entities.Funcionario;
 
-public interface FuncionarioRepository extends CrudRepository<Funcionario, Integer>{
+public interface FuncionarioRepository extends CrudRepository<Funcionario, Integer>, JpaSpecificationExecutor<Funcionario>{
   List<Funcionario> findByNome(String nome); //Derived Query [https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation]
   // List<Funcionario> findByNameAndSalarioGreaterThanAndDataContratacao(String nome, BigDecimal salario, LocalDate data);
   /** Derived Query */

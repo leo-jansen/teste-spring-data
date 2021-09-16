@@ -28,19 +28,20 @@ public class SpringDataApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    Cargo cargo = new Cargo("Desenvolvedor");
+    Cargo cargo = new Cargo("Dona de tudo");
     cargoService.salvar(cargo);
     /*
      * cargoService.atualizar(3, "Analista de dados");
      * cargoService.buscar().forEach(System.out::println); // printa todos os cargos do BD 
      * cargoService.deletarPorId(1);
      */
-    Funcionario funcionario = new Funcionario("Nico", "222.222.222-22", new BigDecimal("10000"), cargo);
+    Funcionario funcionario = new Funcionario("Roberta", "222.222.222-22", new BigDecimal("30000"), cargo);
     funcionarioService.salvar(funcionario);
     funcionarioService.buscarPorNome("Paulo Silveira").forEach(System.out::println);
     funcionarioService
         .buscarNomeSalarioMaiorDataContratacao("Gulherme Silveira", new BigDecimal("20000"), LocalDate.now())
         .forEach(System.out::println);
     funcionarioService.buscarFuncionariosSalarios().forEach(System.out::println);
+    funcionarioService.consultaDinamica(null, null, new BigDecimal("10000")).forEach(System.out::println);
   }
 }
